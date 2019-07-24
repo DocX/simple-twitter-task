@@ -1,0 +1,43 @@
+{
+  "name": "simple-twitter",
+  "version": "1.0.0",
+  "main": "app/entrypoint.ts",
+  "author": "Lukas Dolezal <lukas@dolezalu.cz>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start-dev": "nodemon --exec babel-node --extensions '.ts,.tsx' app/entrypoint.ts",
+    "start": "babel-node --extensions '.ts,.tsx' app/entrypoint.ts",
+    "test": "jest --ci --reporters=default --reporters=jest-junit",
+    "test-watch": "jest --watch",
+    "debug": "node --nolazy --inspect-brk=9229 node_modules/.bin/jest --runInBand"
+  },
+  "engines": {
+    "node": "11.x"
+  },
+  "dependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-typescript": "^7.3.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.5",
+    "@types/express": "^4.17.0",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.0.10",
+    "@types/supertest": "^2.0.7",
+    "babel-jest": "^24.7.1",
+    "jest": "^24.7.1",
+    "jest-junit": "^6.4.0",
+    "nodemon": "^1.18.11",
+    "prettier": "^1.18.2",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.2"
+  }
+}
