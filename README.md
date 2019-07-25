@@ -55,7 +55,7 @@ The token has to contain valid `exp` timestamp and `aud` value `admin`. For exam
 }
 ```
 
-Token can be signed for exmple using online tool on [jwt.io](jwt.io)
+Token can be signed for exmple using online tool on [https://jwt.io](jwt.io)
 
 Get statistics by year:
 
