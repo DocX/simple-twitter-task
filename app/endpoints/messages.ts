@@ -28,20 +28,23 @@ export async function index(req: express.Request, res: express.Response) {
   let nextUrl = new URL(`${req.protocol}://${req.hostname}${req.url}`);
   nextUrl.searchParams.set("page[offset]", offset + limit);
 
-  res.status(200).json({
-    data: messages.map(m => ({
-      id: m.id,
-      type: "messages",
-      attributes: {
-        body: m.body,
-        tag: m.tag,
-        created_at: m.created_at
+  res
+    .status(200)
+    .type("application/vnd.api+json")
+    .json({
+      data: messages.map(m => ({
+        id: m.id,
+        type: "messages",
+        attributes: {
+          body: m.body,
+          tag: m.tag,
+          created_at: m.created_at
+        }
+      })),
+      links: {
+        next: nextUrl.toString()
       }
-    })),
-    links: {
-      next: nextUrl.toString()
-    }
-  });
+    });
 }
 
 export async function create(req: express.Request, res: express.Response) {
@@ -53,33 +56,42 @@ export async function create(req: express.Request, res: express.Response) {
   try {
     let message = await Message.create(req.body.data.attributes);
 
-    res.status(201).json({
-      data: {
-        id: message.id,
-        type: "messages",
-        attributes: {
-          body: message.body,
-          tag: message.tag,
-          created_at: message.created_at
+    res
+      .status(201)
+      .type("application/vnd.api+json")
+      .json({
+        data: {
+          id: message.id,
+          type: "messages",
+          attributes: {
+            body: message.body,
+            tag: message.tag,
+            created_at: message.created_at
+          }
         }
-      }
-    });
+      });
   } catch (e) {
     if (e instanceof Sequelize.ValidationError) {
-      res.status(400).json({
-        errors: e.errors.map(error => ({
-          path: error.path,
-          title: error.message
-        }))
-      });
+      res
+        .status(400)
+        .type("application/vnd.api+json")
+        .json({
+          errors: e.errors.map(error => ({
+            path: error.path,
+            title: error.message
+          }))
+        });
     } else {
-      res.status(500).json({
-        errors: [
-          {
-            title: e.message
-          }
-        ]
-      });
+      res
+        .status(500)
+        .type("application/vnd.api+json")
+        .json({
+          errors: [
+            {
+              title: e.message
+            }
+          ]
+        });
     }
   }
 }

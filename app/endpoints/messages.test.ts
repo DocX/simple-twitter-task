@@ -29,6 +29,9 @@ describe("Messages Endpoint", () => {
         });
 
       expect(response.status).toBe(201);
+      expect(response.header["content-type"]).toEqual(
+        "application/vnd.api+json; charset=utf-8"
+      );
       expect(response.body.data.id).not.toBeUndefined();
       expect(response.body.data.attributes).toMatchObject({
         body: "this is a message",
@@ -109,6 +112,9 @@ describe("Messages Endpoint", () => {
 
       let response = await supertest(app).get("/messages");
 
+      expect(response.header["content-type"]).toEqual(
+        "application/vnd.api+json; charset=utf-8"
+      );
       expect(response.body.data).toHaveLength(50);
       expect(response.body.data[0].attributes).toMatchObject({
         body: "This is message number 99"

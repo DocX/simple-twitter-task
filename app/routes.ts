@@ -18,7 +18,17 @@ export default function(): express.Router {
     }
   );
 
-  router.use(express.json());
+  router.use(express.json({ type: "application/vnd.api+json" }));
+
+  router.use(
+    (req: express.Request, res: express.Response, next: () => void) => {
+      if (req.headers["content-type"] !== "application/vnd.api+json") {
+        res.sendStatus(415);
+      } else {
+        next();
+      }
+    }
+  );
 
   // Messages
   router.get("/messages", Messages.index);

@@ -26,12 +26,25 @@ describe("Routes", () => {
     });
   });
 
+  describe("With other than JSONAPI content type", () => {
+    it("Respond with 400 to any URL", async () => {
+      let app = express().use(routes());
+      let response = await supertest(app)
+        .get("/something")
+        .set("Version", "1.0")
+        .set("Content-type", "application/json");
+
+      expect(response.status).toBe(415);
+    });
+  });
+
   it("routes GET /messages to Messages.index", async () => {
     MessagesMock.index.mockImplementation((req, res) => res.sendStatus(200));
     let app = express().use(routes());
     let response = await supertest(app)
       .get("/messages")
-      .set("Version", "1.0");
+      .set("Version", "1.0")
+      .set("Content-type", "application/vnd.api+json");
 
     expect(response.status).toBe(200);
   });
@@ -41,7 +54,8 @@ describe("Routes", () => {
     let app = express().use(routes());
     let response = await supertest(app)
       .post("/messages")
-      .set("Version", "1.0");
+      .set("Version", "1.0")
+      .set("Content-type", "application/vnd.api+json");
 
     expect(response.status).toBe(201);
   });
@@ -50,7 +64,8 @@ describe("Routes", () => {
     let app = express().use(routes());
     let response = await supertest(app)
       .get("/does-not-exists")
-      .set("Version", "1.0");
+      .set("Version", "1.0")
+      .set("Content-type", "application/vnd.api+json");
 
     expect(response.status).toBe(404);
   });
