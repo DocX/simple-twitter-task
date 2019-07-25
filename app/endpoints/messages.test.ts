@@ -2,8 +2,13 @@ import { index, create } from "./messages";
 import Message from "../models/message";
 import supertest from "supertest";
 import express from "express";
+import sequelize from "../models/index";
 
 describe("Messages Endpoint", () => {
+  afterAll(async () => {
+    await sequelize.close();
+  });
+
   beforeEach(async () => {
     await Message.truncate();
   });

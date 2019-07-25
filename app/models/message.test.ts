@@ -1,6 +1,11 @@
 import Message from "./message";
+import sequelize from "../models/index";
 
 describe("Message model", () => {
+  afterAll(async () => {
+    await sequelize.close();
+  });
+
   beforeEach(async () => {
     await Message.truncate();
   });

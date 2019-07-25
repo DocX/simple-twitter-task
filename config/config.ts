@@ -2,6 +2,7 @@ export default {
   development: {
     listeningPort: 4000,
     corsAllowedOrigins: "*",
+    jwtSecret: "supersecretsecret",
     database: {
       username: "postgres",
       password: "postgres",
@@ -12,6 +13,7 @@ export default {
     }
   },
   test: {
+    jwtSecret: "testsupersecretsecret",
     database: {
       username: "postgres",
       password: "postgres",
@@ -22,6 +24,7 @@ export default {
     }
   },
   production: {
+    jwtSecret: process.env["JWT_SECRET"],
     listeningPort: process.env["PORT"],
     corsAllowedOrigins: "*",
     database: {}
