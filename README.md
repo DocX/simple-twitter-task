@@ -69,3 +69,12 @@ curl -H"Version: 1.0" http://localhost:4000/messages-stats?groupBy=year-tag
 ```
 
 Optionally add `from` and/or `to` query parameter with ISO8601 formated timestamp to specify range of the statistics generated.
+
+## Testing
+
+If running locally, tests can be run by
+
+```
+nvm use
+yarn run test
+```
