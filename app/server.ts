@@ -5,17 +5,20 @@ import config from "../config/config";
 
 export default function() {
   let app = express();
+  let currentConfig = config[process.env["NODE_ENV"] || "development"];
 
   app.use(
     cors({
-      origin: config.corsAllowedOrigins
+      origin: currentConfig.corsAllowedOrigins
     })
   );
 
   app.use(routes());
 
-  app.listen(config.listeningPort, () => {
-    console.log(`Listening on: ${config.listeningPort}`);
+  console.log({ currentConfig });
+
+  app.listen(currentConfig.listeningPort, () => {
+    console.log(`Listening on: ${currentConfig.listeningPort}`);
   });
 
   return app;
