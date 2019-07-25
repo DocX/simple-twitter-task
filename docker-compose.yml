@@ -1,0 +1,22 @@
+version: "3"
+services:
+  api:
+    build:
+      context: .
+      dockerfile: api.dockerfile
+    entrypoint: /bin/sh
+    command: /root/app/docker-start.sh
+    working_dir: /root/app
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: "postgres://postgres:postgres@db:5432/simpletwitter"
+      NODE_ENV: production
+      PORT: 4000
+      JWT_SECRET: supersecretsecretsecret
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres

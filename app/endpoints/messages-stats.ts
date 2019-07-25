@@ -22,7 +22,7 @@ function authorize(req: express.Request, res: express.Response): boolean {
   let token = result[1];
 
   try {
-    jwt.verify(token, config[process.env.NODE_ENV || "production"].jwtSecret, {
+    jwt.verify(token, config[process.env.NODE_ENV || "development"].jwtSecret, {
       algorithms: ["HS256"],
       audience: "admin"
     });
