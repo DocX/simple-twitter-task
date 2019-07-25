@@ -16,6 +16,7 @@ yarn install
 export DATABASE_URL=your_postgres_connection_url
 export NODE_ENV=production
 export JWT_SECRET=secret_secret
+./db-migrate.sh
 yarn run start
 ```
 
