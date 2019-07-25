@@ -1,9 +1,9 @@
 import { Sequelize } from "sequelize";
-import config from "../../config/config";
+import config from "../../config/database.json";
 
 function InitSequelize() {
   const env = process.env.NODE_ENV || "development";
-  let currentConfig = config[env].database;
+  let currentConfig = config[env];
   if (currentConfig.use_env_variable) {
     return new Sequelize(
       process.env[currentConfig.use_env_variable],
