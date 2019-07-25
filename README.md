@@ -60,13 +60,15 @@ Token can be signed for exmple using online tool on [jwt.io](jwt.io)
 Get statistics by year:
 
 ```
-curl -H"Version: 1.0" http://localhost:4000/messages-stats?groupBy=year
+export TOKEN=YOUR-JWT-TOKEN
+curl -H"Version: 1.0" -H"Authorization: Bearer $TOKEN" http://localhost:4000/messages-stats?groupBy=year
 ```
 
 Get statistics by year and tag:
 
 ```
-curl -H"Version: 1.0" http://localhost:4000/messages-stats?groupBy=year-tag
+export TOKEN=YOUR-JWT-TOKEN
+curl -H"Version: 1.0" -H"Authorization: Bearer $TOKEN" http://localhost:4000/messages-stats?groupBy=year-tag
 ```
 
 Optionally add `from` and/or `to` query parameter with ISO8601 formated timestamp to specify range of the statistics generated.
