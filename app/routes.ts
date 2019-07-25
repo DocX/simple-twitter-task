@@ -18,6 +18,8 @@ export default function(): express.Router {
     }
   );
 
+  router.use(express.json());
+
   // Messages
   router.get("/messages", Messages.index);
   router.post("/messages", Messages.create);

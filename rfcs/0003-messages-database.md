@@ -40,7 +40,7 @@ Following evaluation is based on quick research of information available online.
 
 Model messages as a single table with following columns:
 
-- `id` - UUID, primary key
+- `id` - integer, primary key
 - `body` - text
 - `tag` - text, indexed column
 - `created_at` - timestamp, indexed column

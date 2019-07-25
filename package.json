@@ -8,8 +8,8 @@
   "scripts": {
     "start-dev": "nodemon --exec babel-node --extensions '.ts,.tsx' app/entrypoint.ts",
     "start": "babel-node --extensions '.ts,.tsx' app/entrypoint.ts",
-    "test": "jest --ci --reporters=default --reporters=jest-junit",
-    "test-watch": "jest --watch",
+    "test": "jest --ci --runInBand --reporters=default --reporters=jest-junit",
+    "test-watch": "jest --watch --runInBand",
     "debug": "node --nolazy --inspect-brk=9229 node_modules/.bin/jest --runInBand"
   },
   "engines": {
@@ -21,7 +21,11 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-typescript": "^7.3.3",
     "cors": "^2.8.5",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "pg": "^7.11.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.10.2",
+    "sequelize-cli": "^5.5.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.5",
