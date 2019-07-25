@@ -10,7 +10,7 @@ From the requirements we want to be able to:
 
 My assumptions further are:
 
-- IDs should be non sequential to obfuscate number of messages
+- IDs can be sequential numbers
 - Application will have higher (let say 10x) query load than write load
 - It should be possible to scale for both the write and read load with little effort
 - Strong consistency is not required - i.e. writes may appear with some latency in query results
